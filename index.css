@@ -1,3 +1,20 @@
-body{
-    background-color:blue;
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color:lightblue;
+    padding:0%;
+    margin:0%;
+}
+
+.tile {
+    background-color: white;
+    border: 2px solid black;
+    flex: 1 1 300px;  /* responsive width */
+    max-width: 20%;  /* keeps rows balanced on large screens */
+    padding: 1rem;
+    box-sizing: border-box;
 }
