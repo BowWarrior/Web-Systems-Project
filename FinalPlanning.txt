@@ -1,0 +1,7 @@
+Make each month have 35 panels (fill in at the weekday where the 1st starts, then work forwards to fill in next month's dates in case there's space. Then work backwards to fill in last month's days at the beginning of the month) (i.e. the first of November starts on a Monday. Then, fill in that mon(the 1st (at index 1)) - tues(the 30th (at index 31)) with November's days. But we also need to fill in index 0 with the 31st of OCT, and indices 32-34 with december's 1st, 2nd, and 3rd.)
+
+make it responsive
+
+On phone, make the top half a square with each panel being a date. If you click on a date, make a popup show up on the bottom where you can see your day's engagements. Also make it so if you swipe right, then another page shows up that shows you your alarms. In the bottom right of this, you should see a plus where you can either create an activity or alarm
+
+On PC, we can make it the same way (or depending on how long that takes, like google calendar). The panels should be in a box (7x5), and on the bottom of the page, when you click on a panel, you should be able to see the day's agenda

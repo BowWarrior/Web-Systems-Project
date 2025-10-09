@@ -1,24 +1,23 @@
 body {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin: 0;
-    padding: 1rem;
     box-sizing: border-box;
     background-color:lightblue;
     padding:0%;
     margin:0%;
+    background-image: url('images/glob.gif');
+    background-size: cover;
 }
 
 .tile {
     background-color: white;
     border: 2px solid black;
-    flex: 1 1 300px;  /*responsive width*/
-    max-width: 14.2%;  /*essentially decides how many tiles per row in calendar*/
+    /* responsive sizing handled by grid columns on the parent */
+    width: 100%;
     max-height: fit-content;
-    padding: 1rem;
     box-sizing: border-box;
     aspect-ratio: 1 / 1;    /*makes tiles square*/
+    display: flex; /* center the content inside each tile */
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
@@ -34,9 +33,30 @@ body {
     box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
 }
 
+.tileGroup{
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* tiles will grow/shrink; min is 90px */
+    overflow: clip;  /* scroll if tiles don't fit */
+}
 
+.calendar{
+    opacity:100%;
+}
 
-
+/*for pc */
+@media (min-width: 1024px) {
+    .tileGroup {
+        height: 80vh;
+        position:relative;
+        top:20vh;
+        /*aspect-ratio: 1 / 1; may or may not need */
+        grid-template-columns: repeat(7, 1fr); /* 7 columns on large screens */
+    }
+    .tile {
+        aspect-ratio: 1 / 1;       /* keep square */
+    }
+}
 
 
 

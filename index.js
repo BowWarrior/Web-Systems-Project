@@ -4,6 +4,7 @@
 3. Make it so the rows always have 7 tiles in them no matter what the screen size is
 4. Label Month at tippy top
 5. label days of week at top
+6. make the days line up on the days of the week (so if month starts on a wednesday, the 1st is on the 3rd tile)
 */
 
 
@@ -36,11 +37,12 @@ let year = d.getFullYear();
 
 
 let daysInMonth = new Date(year, month, 0).getDate(); //gets number of days in the current month. add 1 to month to get next month's day count
+const calendar = document.getElementById("calendar");
 for(let i = 0; i < daysInMonth; i++){
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("tile"); //sets the class of the div to "tile"
-    newDiv.innerText = (i+1); //sets text of the div to the day
-    document.body.appendChild(newDiv);
+    //const newDiv = document.createElement("div");
+    //newDiv.classList.add("tile"); //sets the class of the div to "tile"
+    //newDiv.innerText = (i+1); //sets text of the div to the day
+    //calendar.appendChild(newDiv);
     
 }
 
