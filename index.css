@@ -12,17 +12,16 @@ body {
 .tile {
     background-color: white;
     border: 2px solid black;
-    /* responsive sizing handled by grid columns on the parent */
     width: 100%;
     max-height: fit-content;
     box-sizing: border-box;
-    aspect-ratio: 1 / 1;    /*makes tiles square*/
-    display: flex; /* center the content inside each tile */
+    aspect-ratio: 1 / 1; /*makes tiles square*/
+    display: flex; 
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border-radius: 4px;     /* smooth corners */
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.2); /* subtle shadow */
+    border-radius: 4px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
 }
@@ -33,11 +32,13 @@ body {
     box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
 }
 
+
+
 .tileGroup{
     background-color: red;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* tiles will grow/shrink; min is 90px */
-    overflow: clip;  /* scroll if tiles don't fit */
+    
 }
 
 .calendar{
@@ -51,14 +52,28 @@ body {
         position:relative;
         top:20vh;
         /*aspect-ratio: 1 / 1; may or may not need */
-        grid-template-columns: repeat(7, 1fr); /* 7 columns on large screens */
+        grid-template-columns: repeat(7, 1fr); /* 7 columns for calendar */
     }
     .tile {
-        aspect-ratio: 1 / 1;       /* keep square */
+        aspect-ratio: 1 / 1; /* keep square */
     }
 }
 
 
+
+
+/*for phone */
+@media (max-width: 481px){
+    .tileGroup{
+        height: 85.7vw;
+        position:relative;
+        grid-template-columns: repeat(7, 1fr); /* 7 columns for calendar */
+        
+    }
+    .tile{
+        aspect-ratio: 1 / 1; /* keep square */
+    }
+}
 
 
 
