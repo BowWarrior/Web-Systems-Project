@@ -83,25 +83,43 @@ function fillMonth(year, month) {
 
     //start filling in past month's last days
     for (let i = startWeekday - 1; i >= 0; i--) {
-        tiles[i].innerText = daysInPrevMonth - (startWeekday - 1 - i);
+
         tiles[i].style.backgroundColor = "#ababab"; 
 
-        
+        const newP = document.createElement("p");
+        newP.classList.add("dayNum");
+        newP.innerText = daysInPrevMonth - (startWeekday - 1 - i); // set text on <p>
+
+        tiles[i].appendChild(newP); //adds <p> inside tile
     }
 
     //start filling in current month's days
     tileIndex = startWeekday;
     for (let day = 1; day <= daysInMonth; day++) {
-        tiles[tileIndex].innerText = day;
+        const newP = document.createElement("p");
+        newP.classList.add("dayNum");
+        newP.innerText = day;
+        tiles[tileIndex].appendChild(newP); //adds <p> inside tile
+
+
         tileIndex++;
     }
 
     //start filling in next month's days
     let nextDay = 1;
     while (tileIndex < tiles.length) {
-        tiles[tileIndex].innerText = nextDay;
+        const newP = document.createElement("p");
+        newP.classList.add("dayNum");
+        newP.innerText = nextDay;
+        tiles[tileIndex].appendChild(newP); //adds <p> inside tile
+
+
+
         tiles[tileIndex].style.backgroundColor = "#ababab";
         nextDay++;
+
+
+
         tileIndex++;
     }
 }
@@ -113,7 +131,6 @@ function fillMonth(year, month) {
 
 
 fillMonth(year-1, 10);
-
 
 
 

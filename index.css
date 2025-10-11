@@ -10,21 +10,30 @@ body {
 }
 
 .tile {
+    position: relative;
     background-color: white;
     border: 2px solid black;
     width: 100%;
     max-height: fit-content;
     box-sizing: border-box;
     aspect-ratio: 1 / 1; /*makes tiles square*/
-    display: flex; 
-    align-items: center;
-    justify-content: center;
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0%;
+    margin: 0%;
 
 }
+
+.dayNum {
+    padding:0%;
+    margin: 0%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 
 
 .tile:hover {
@@ -65,13 +74,13 @@ body {
 /*for phone */
 @media (max-width: 481px){
     .tileGroup{
-        height: 85.7vw;
+        height: 107.2vw;
         position:relative;
         grid-template-columns: repeat(7, 1fr); /* 7 columns for calendar */
         
     }
     .tile{
-        aspect-ratio: 1 / 1; /* keep square */
+        aspect-ratio: 1 / 1.25; /* keep square */
     }
 }
 
