@@ -89,16 +89,16 @@ fillMonth(2099, 10);
 //resets each panel in the calendar so we can change the calendar month if need be
 function clearTiles(){
     for (let tile of tiles) {
-        tile.replaceChildren(); //removes all children
+        tile.replaceChildren();
         tile.removeAttribute("style");
     }
 }
 
 function fillMonth(year, month) {
     clearTiles();
-    const startWeekday = new Date(year, month - 1, 1).getDay(); // weekday of 1st day of current month
-    const daysInPrevMonth = new Date(year, month - 1, 0).getDate(); // number of days in previous month
-    const daysInMonth = new Date(year, month, 0).getDate(); // number of days in current month
+    const startWeekday = new Date(year, month - 1, 1).getDay(); //weekday of the 1st of the current month 
+    const daysInPrevMonth = new Date(year, month - 1, 0).getDate(); //# of days in previous month
+    const daysInMonth = new Date(year, month, 0).getDate(); //# of days in current month
     
     let tileIndex = 0;
 
