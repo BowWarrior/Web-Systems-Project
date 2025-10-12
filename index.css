@@ -46,12 +46,43 @@ body {
 .tileGroup{
     background-color: red;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* tiles will grow/shrink; min is 90px */
     
 }
 
+
+
+.weekdayRowDiv {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns side-by-side */
+    text-align: center;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid blue;
+    width: 100%;
+    padding:0px;
+    margin:0px;
+}
+
+.weekday{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0px 0;
+    margin: 0px;
+    border-right: 2px solid black;
+}
+
+.monthOfYear{
+    color:red;
+    text-align: center;
+    padding-bottom: 35xpx;
+}
+
+
 .calendar{
     opacity:100%;
+    position:relative;
+    top:7.8vh;
 }
 
 /*for pc */
@@ -59,7 +90,7 @@ body {
     .tileGroup {
         height: 80vh;
         position:relative;
-        top:20vh;
+        
         /*aspect-ratio: 1 / 1; may or may not need */
         grid-template-columns: repeat(7, 1fr); /* 7 columns for calendar */
     }
@@ -73,6 +104,19 @@ body {
 
 /*for phone */
 @media (max-width: 481px){
+    .calendar{
+        top:0%;
+        width: 100%;
+    }
+
+    .weekdayRowDiv{
+        width:100%;
+    }
+
+    .weekday{
+        
+    }
+
     .tileGroup{
         height: 107.2vw;
         position:relative;

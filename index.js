@@ -31,6 +31,7 @@ let month = d.getMonth() + 1;
 let day = d.getDate();
 let year = d.getFullYear();
 const calendar = document.getElementById("calendar");
+const displayedMonth = document.getElementsByClassName("monthOfYear")[0];
 
 
 let tiles = document.getElementsByClassName("tile");
@@ -46,11 +47,33 @@ for(let i = 0; i < tiles.length; i++){
 
 
 
+const weekdays = document.getElementsByClassName("weekday");
+const mq = window.matchMedia("(max-width: 480px)");
 
-
-
-
-
+function updateWeekdays(e) {
+    if (e.matches) {
+        //for phone
+        weekdays[0].innerHTML = "S";
+        weekdays[1].innerHTML = "M";
+        weekdays[2].innerHTML = "T";
+        weekdays[3].innerHTML = "W";
+        weekdays[4].innerHTML = "T";
+        weekdays[5].innerHTML = "F";
+        weekdays[6].innerHTML = "S";
+    } else {
+        //for laptop
+        weekdays[0].innerHTML = "Sunday";
+        weekdays[1].innerHTML = "Monday";
+        weekdays[2].innerHTML = "Tuesday";
+        weekdays[3].innerHTML = "Wednesday";
+        weekdays[4].innerHTML = "Thursday";
+        weekdays[5].innerHTML = "Friday";
+        weekdays[6].innerHTML = "Saturday";
+    }
+}
+updateWeekdays(mq);
+//updates when page changes size
+mq.addEventListener("change", updateWeekdays);
 
 
 
@@ -60,12 +83,10 @@ for(let i = 0; i < tiles.length; i++){
 
 // to adjust to last month:
 // month = month-1;
-
-
 fillMonth(2099, 10);
 
 
-
+//resets each panel in the calendar so we can change the calendar month if need be
 function clearTiles(){
     for (let tile of tiles) {
         tile.replaceChildren(); //removes all children
@@ -78,9 +99,20 @@ function fillMonth(year, month) {
     const startWeekday = new Date(year, month - 1, 1).getDay(); // weekday of 1st day of current month
     const daysInPrevMonth = new Date(year, month - 1, 0).getDate(); // number of days in previous month
     const daysInMonth = new Date(year, month, 0).getDate(); // number of days in current month
-
+    
     let tileIndex = 0;
 
+
+    const thisMonth = new Date(year, month - 1);
+    
+    console.log(year + " " + d.getFullYear());
+    if(year == d.getFullYear()){
+        displayedMonth.innerHTML = thisMonth.toLocaleString('default', { month: 'long' });
+    } else{
+        displayedMonth.innerHTML = thisMonth.toLocaleString('default', { month: 'long' }) + " " + year;
+
+    }
+        
     //start filling in past month's last days
     for (let i = startWeekday - 1; i >= 0; i--) {
 
@@ -130,7 +162,7 @@ function fillMonth(year, month) {
 
 
 
-fillMonth(year-1, 10);
+fillMonth(year-1, 11);
 
 
 
