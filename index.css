@@ -85,8 +85,62 @@ body {
     position:relative;
 }
 
+
+#sidePanel{
+    position: relative;
+    flex:1;
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*for pc *//* for pc */
 @media (min-width: 1024px) {
+    body {
+        column-gap: 7px;
+    }
+
+    
+
+
     .calendar {
         position: relative;
         height: 100vh;
@@ -95,6 +149,16 @@ body {
         grid-template-rows: auto auto 1fr; /* month header, weekday row, tiles */
         margin: 0;
         padding: 0;
+        
+    }
+
+
+    #addEvent {
+        position: absolute;
+        bottom: 0%;
+        right: 0%; /*don't use left here because it starts counting from the left side. this means at left or right 100%, the object will be perfectly outside the containing div, and at left or right 0%, it will be perfectly inside of it */
+        background-color: green;
+        cursor: pointer;
     }
 
     .monthOfYear {
@@ -127,6 +191,12 @@ body {
         aspect-ratio: 1 / 1; /*keep the tiles square*/
         margin: 0;
         padding: 0;
+    }
+
+
+    #sidePanel{
+        height: 100vh;
+        
     }
 
 }
