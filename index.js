@@ -1,10 +1,10 @@
 /*  FEATURES TO ADD:
 1. when you scroll down with mouse or on phone with finger, make the selected day's events show up
-2. Put calendar part into a div and make it roughly half screen height (by putting them into a div with size of half screen height)
-3. Make it so the rows always have 7 tiles in them no matter what the screen size is
-4. Label Month at tippy top
-5. label days of week at top
-6. make the days line up on the days of the week (so if month starts on a wednesday, the 1st is on the 3rd tile)
+2. make the sidebar into an hour by hour view of the day's events
+3. make it so the a day can have an event
+4. make it so the sidebar shows the event that is connected to that day
+5. make an 'x' in the sidebar to close it (then make the calendar move to center of page)
+6. make so you can add/delete events in frontend
 */
 
 
