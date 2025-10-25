@@ -1,10 +1,12 @@
 /*  FEATURES TO ADD:
+0. make it so the ball doesn't disappear from the side panel when selecting a different day
 1. when you scroll down with mouse or on phone with finger, make the selected day's events show up
 2. make the sidebar into an hour by hour view of the day's events
 3. make it so the a day can have an event
 4. make it so the sidebar shows the event that is connected to that day
 5. make an 'x' in the sidebar to close it (then make the calendar move to center of page)
 6. make so you can add/delete events in frontend
+7. look into having no border on tiles (makes less clunky)
 */
 
 
@@ -126,7 +128,7 @@ function fillMonth(year, month) {
         
     //start filling in past month's last days
     for (let i = startWeekday - 1; i >= 0; i--) {
-        tiles[i].style.backgroundColor = "#ababab"; 
+        tiles[i].style.backgroundColor = "rgba(132, 132, 132, 0.5)"; 
         const newP = document.createElement("p");
         newP.classList.add("dayNum");
         newP.innerText = daysInPrevMonth - (startWeekday - 1 - i); // set text on <p>
@@ -154,7 +156,7 @@ function fillMonth(year, month) {
         newP.innerText = nextDay;
         newP.dataset.date = new Date(year, month, nextDay).toISOString(); //(for filling in side panel)
         tiles[tileIndex].appendChild(newP);
-        tiles[tileIndex].style.backgroundColor = "#ababab";
+        tiles[tileIndex].style.backgroundColor = "rgba(132, 132, 132, 0.5)";
         nextDay++;
 
         tileIndex++;

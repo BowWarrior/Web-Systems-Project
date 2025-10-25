@@ -237,11 +237,19 @@ body {
 
 
 /*for phone */
-@media (max-width: 481px){
+@media (max-width: 480px){
+    html {
+        overflow-x: hidden; /*prevents horizontal scrolling (need both)*/
+    }
+    body{
+        overflow-x: hidden; /*prevents horizontal scrolling (need both)*/
+        width: 100vw;
+    }
     .calendar{
         top:0%;
         width: 100%;
         max-width: 100vw;
+        background-color: opaque 50;
     }
 
     .weekdayRowDiv{
