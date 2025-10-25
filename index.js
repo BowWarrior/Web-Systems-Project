@@ -32,11 +32,30 @@ let day = d.getDate();
 let year = d.getFullYear();
 const calendar = document.getElementById("calendar");
 const displayedMonth = document.getElementsByClassName("monthOfYear")[0];
+const sidePanel = document.getElementById("sidePanel");
 
-
+let selectedTile = null; //keep track currently clicked tile
 let tiles = document.getElementsByClassName("tile");
 for(let i = 0; i < tiles.length; i++){
     let tile = tiles[i]; //define each individual tile so they're changable
+
+    
+    //this jquery makes it so when you click a tile, the side panel pops up with the correct date (and disappears when clicked again)
+    tile.addEventListener("click", function () {
+        const dayElement = tile.querySelector(".dayNum");
+        if (!dayElement) return;
+
+        const tileDate = new Date(dayElement.dataset.date); // real Date object
+        const fullDate = tileDate.toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+        sidePanel.innerHTML = `<h2>${fullDate}</h2>`;
+        sidePanel.style.opacity = "1";
+
+        //toggle logic
+        selectedTile = selectedTile === tile ? null : tile;
+        if (selectedTile === null) sidePanel.style.opacity = "0";
+    });
+
     //tile.style.backgroundColor = "lightgreen";
     /*if(tile = tiles[17]){
         tile.style.backgroundColor = "red";
@@ -81,10 +100,6 @@ mq.addEventListener("change", updateWeekdays);
 
 
 
-// to adjust to last month:
-// month = month-1;
-fillMonth(2099, 10);
-
 
 //resets each panel in the calendar so we can change the calendar month if need be
 function clearTiles(){
@@ -99,10 +114,7 @@ function fillMonth(year, month) {
     const startWeekday = new Date(year, month - 1, 1).getDay(); //weekday of the 1st of the current month 
     const daysInPrevMonth = new Date(year, month - 1, 0).getDate(); //# of days in previous month
     const daysInMonth = new Date(year, month, 0).getDate(); //# of days in current month
-    
     let tileIndex = 0;
-
-
     const thisMonth = new Date(year, month - 1);
     
     //checks if the year when the function is called is this year
@@ -110,19 +122,16 @@ function fillMonth(year, month) {
         displayedMonth.innerHTML = thisMonth.toLocaleString('default', { month: 'long' });
     } else{
         displayedMonth.innerHTML = thisMonth.toLocaleString('default', { month: 'long' }) + " " + year;
-
     }
         
     //start filling in past month's last days
     for (let i = startWeekday - 1; i >= 0; i--) {
-
         tiles[i].style.backgroundColor = "#ababab"; 
-
         const newP = document.createElement("p");
         newP.classList.add("dayNum");
         newP.innerText = daysInPrevMonth - (startWeekday - 1 - i); // set text on <p>
-
-        tiles[i].appendChild(newP); //adds <p> inside tile
+        newP.dataset.date = new Date(year, month - 2, newP.innerText).toISOString(); //(for filling in side panel)
+        tiles[i].appendChild(newP);
     }
 
     //start filling in current month's days
@@ -131,35 +140,32 @@ function fillMonth(year, month) {
         const newP = document.createElement("p");
         newP.classList.add("dayNum");
         newP.innerText = day;
-        tiles[tileIndex].appendChild(newP); //adds <p> inside tile
-
+        newP.dataset.date = new Date(year, month - 1, day).toISOString(); //(for filling in side panel)
+        tiles[tileIndex].appendChild(newP);
 
         tileIndex++;
     }
 
     //start filling in next month's days
     let nextDay = 1;
-    while (tileIndex < tiles.length) {
+    for(i = tileIndex; i < tiles.length; i++) {
         const newP = document.createElement("p");
         newP.classList.add("dayNum");
         newP.innerText = nextDay;
-        tiles[tileIndex].appendChild(newP); //adds <p> inside tile
-
-
-
+        newP.dataset.date = new Date(year, month, nextDay).toISOString(); //(for filling in side panel)
+        tiles[tileIndex].appendChild(newP);
         tiles[tileIndex].style.backgroundColor = "#ababab";
         nextDay++;
-
-
 
         tileIndex++;
     }
 
-
     setBackground();    
 }
-fillMonth(year, month);
-//april, may, november, december
+
+//year, month
+//to adjust by 1, just add or subtract by an int
+fillMonth(year, 4);
 
 
 

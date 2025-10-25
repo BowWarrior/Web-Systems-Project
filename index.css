@@ -135,31 +135,68 @@ body {
 /*for pc *//* for pc */
 @media (min-width: 1024px) {
     body {
-        column-gap: 7px;
+        display: flex;
+        flex-direction: row; /* ensures side-by-side layout */
+        align-items: center; /* vertical centering */
+        justify-content: flex-start; /* start layout from left */
+        height: 100vh; /* needed for vertical centering */
+        margin: 0;
+        padding: 0;
+        column-gap: 2vw; /* small consistent gap */
     }
-
-    
-
 
     .calendar {
         position: relative;
-        height: 100vh;
-        width: 100vh;
+        height: 90vh;
+        width: 90vh;
         display: grid;
-        grid-template-rows: auto auto 1fr; /* month header, weekday row, tiles */
-        margin: 0;
+        grid-template-rows: auto auto 1fr;
+        margin-left: 1vw;
         padding: 0;
-        
+        flex-shrink: 0;
     }
 
+    #sidePanel{
+        height: 90vh;
+        right:1vw;
+        text-align: center;
+        color:white;
+        padding:0px;
+        margin:0px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    #sidePanelTitle{
+        margin: 0;
+        padding: 3vh;
+        position: relative;
+        top:0px;
+    }
 
     #addEvent {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
         position: absolute;
-        bottom: 0%;
-        right: 0%; /*don't use left here because it starts counting from the left side. this means at left or right 100%, the object will be perfectly outside the containing div, and at left or right 0%, it will be perfectly inside of it */
+        bottom: 5%;
+        right: 5%;
         background-color: green;
         cursor: pointer;
+
+        
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 1); /*x, y, darkness*/
+        transition: transform 0.25s ease, box-shadow 0.25s ease, width .25s ease, height .25s ease;
+
+        
+
     }
+
+    #addEvent:hover {
+        transform: translateY(-1px);
+        width:52px;
+        height:52px;
+    }
+
 
     .monthOfYear {
         flex: 0 0 auto;
@@ -188,18 +225,12 @@ body {
     }
 
     .tile {
-        aspect-ratio: 1 / 1; /*keep the tiles square*/
+        aspect-ratio: 1 / 1; /* keep square */
         margin: 0;
         padding: 0;
     }
-
-
-    #sidePanel{
-        height: 100vh;
-        
-    }
-
 }
+
 
 
 
