@@ -158,7 +158,7 @@ function fillMonth(year, month) {
 
     setBackground();    
 }
-fillMonth(year, month);
+fillMonth(year, 4);
 //april, may, november, december
 
 

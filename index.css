@@ -15,7 +15,6 @@ body {
     border: 2px solid black;
     width: 100%;
     max-height: fit-content;
-    box-sizing: border-box;
     aspect-ratio: 1 / 1; /*makes tiles square*/
     box-sizing: border-box;
     border-radius: 4px;
