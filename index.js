@@ -1,6 +1,5 @@
 /*  FEATURES TO ADD:
-0. make it so the ball doesn't disappear from the side panel when selecting a different day
-1. when you scroll down with mouse or on phone with finger, make the selected day's events show up
+1. when you swipe up on phone with finger, make the selected day's events show up
 2. make the sidebar into an hour by hour view of the day's events
 3. make it so the a day can have an event
 4. make it so the sidebar shows the event that is connected to that day
@@ -38,6 +37,7 @@ const sidePanel = document.getElementById("sidePanel");
 
 let selectedTile = null; //keep track currently clicked tile
 let tiles = document.getElementsByClassName("tile");
+let sidePanelTitle = document.getElementById("sidePanelTitle");
 for(let i = 0; i < tiles.length; i++){
     let tile = tiles[i]; //define each individual tile so they're changable
 
@@ -50,7 +50,7 @@ for(let i = 0; i < tiles.length; i++){
         const tileDate = new Date(dayElement.dataset.date); // real Date object
         const fullDate = tileDate.toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
-        sidePanel.innerHTML = `<h2>${fullDate}</h2>`;
+        sidePanelTitle.innerHTML = `${fullDate}`;
         sidePanel.style.opacity = "1";
 
         //toggle logic
