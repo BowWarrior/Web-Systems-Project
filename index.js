@@ -31,7 +31,7 @@ const d = new Date(); //date starts with January at index 0
 let month = d.getMonth() + 1;
 let day = d.getDate();
 let year = d.getFullYear();
-const calendar = document.getElementById("calendar");
+const calendar = document.getElementsByClassName("calendar")[0];
 const displayedMonth = document.getElementsByClassName("monthOfYear")[0];
 const sidePanel = document.getElementById("sidePanel");
 
@@ -52,10 +52,15 @@ for(let i = 0; i < tiles.length; i++){
 
         sidePanelTitle.innerHTML = `${fullDate}`;
         sidePanel.style.opacity = "1";
+        calendar.style.transform = "translateX(0%)";
+        sidePanel.classList.toggle("active");
 
         //toggle logic
         selectedTile = selectedTile === tile ? null : tile;
-        if (selectedTile === null) sidePanel.style.opacity = "0";
+        if (selectedTile === null){
+            sidePanel.style.opacity = "0";
+            calendar.style.transform = "translateX(50%)";
+        } 
     });
 
     //tile.style.backgroundColor = "lightgreen";
@@ -63,6 +68,41 @@ for(let i = 0; i < tiles.length; i++){
         tile.style.backgroundColor = "red";
     }*/
 }
+
+
+//scrolls through events on tile hover
+function tileScroll() {
+    document.querySelectorAll(".tileItems").forEach(tile => {
+        let scrollInterval;
+
+        tile.addEventListener("mouseenter", () => {
+        const target = tile.scrollHeight - tile.clientHeight; // bottom
+        const speed = 1; //pixels per frame, lower = slower
+        scrollInterval = setInterval(() => {
+            if (tile.scrollTop < target) {
+            tile.scrollTop += speed;
+            } else {
+            clearInterval(scrollInterval);
+            }
+        }, 16);
+        });
+
+        tile.addEventListener("mouseleave", () => {
+        clearInterval(scrollInterval);
+        tile.scrollTop = 0; //scroll back to top
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,7 +152,7 @@ function clearTiles(){
 }
 
 function fillMonth(year, month) {
-    clearTiles();
+    //clearTiles();
     const startWeekday = new Date(year, month - 1, 1).getDay(); //weekday of the 1st of the current month 
     const daysInPrevMonth = new Date(year, month - 1, 0).getDate(); //# of days in previous month
     const daysInMonth = new Date(year, month, 0).getDate(); //# of days in current month
@@ -167,8 +207,8 @@ function fillMonth(year, month) {
 
 //year, month
 //to adjust by 1, just add or subtract by an int
-fillMonth(year, 4);
-
+fillMonth(year, month);
+tileScroll();
 
 
 
@@ -222,3 +262,8 @@ function setBackground(){
     //newDiv.classList.add("tile"); //sets the class of the div to "tile"
     //tiles[i].innerText = "test"; //sets text of the div to the day
     //tiles[i].appendChild(newDiv); //or just 'tile' if you wanna do it to all of them 
+
+
+function addEvent(){
+    alert("Add Event Functionality Coming Soon!");
+}
