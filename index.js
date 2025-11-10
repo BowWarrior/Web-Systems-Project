@@ -47,21 +47,32 @@ for(let i = 0; i < tiles.length; i++){
         const dayElement = tile.querySelector(".dayNum");
         if (!dayElement) return;
 
-        const tileDate = new Date(dayElement.dataset.date); // real Date object
-        const fullDate = tileDate.toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        // If clicking the same tile, hide panel and exit
+        if (selectedTile === tile) {
+            sidePanel.style.opacity = "0";
+            calendar.style.transform = "translateX(50%)";
+            sidePanel.classList.remove("active");
+            selectedTile = null; // deselect
+            return;
+        }
+
+        // Clicking a new tile: show panel and update
+        selectedTile = tile;
+
+        const tileDate = new Date(dayElement.dataset.date);
+        const fullDate = tileDate.toLocaleDateString('default', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
 
         sidePanelTitle.innerHTML = `${fullDate}`;
         sidePanel.style.opacity = "1";
         calendar.style.transform = "translateX(0%)";
-        sidePanel.classList.toggle("active");
-
-        //toggle logic
-        selectedTile = selectedTile === tile ? null : tile;
-        if (selectedTile === null){
-            sidePanel.style.opacity = "0";
-            calendar.style.transform = "translateX(50%)";
-        } 
+        sidePanel.classList.add("active");
     });
+
 
     //tile.style.backgroundColor = "lightgreen";
     /*if(tile = tiles[17]){
@@ -76,20 +87,20 @@ function tileScroll() {
         let scrollInterval;
 
         tile.addEventListener("mouseenter", () => {
-        const target = tile.scrollHeight - tile.clientHeight; // bottom
-        const speed = 1; //pixels per frame, lower = slower
-        scrollInterval = setInterval(() => {
-            if (tile.scrollTop < target) {
-            tile.scrollTop += speed;
-            } else {
-            clearInterval(scrollInterval);
-            }
-        }, 16);
+            const target = tile.scrollHeight - tile.clientHeight; // bottom
+            const speed = 1; //pixels per frame, lower = slower
+            scrollInterval = setInterval(() => {
+                if (tile.scrollTop < target) {
+                    tile.scrollTop += speed;
+                } else {
+                    clearInterval(scrollInterval);
+                }
+            }, 16);
         });
 
         tile.addEventListener("mouseleave", () => {
-        clearInterval(scrollInterval);
-        tile.scrollTop = 0; //scroll back to top
+            clearInterval(scrollInterval);
+            tile.scrollTop = 0; //scroll back to top
         });
     });
 }
@@ -264,6 +275,23 @@ function setBackground(){
     //tiles[i].appendChild(newDiv); //or just 'tile' if you wanna do it to all of them 
 
 
-function addEvent(){
-    alert("Add Event Functionality Coming Soon!");
+function addEvent() {
+    // Find (or create) the tileItems container
+    let tileItems = selectedTile.querySelector(".tileItems");
+    if (!tileItems) {
+        tileItems = document.createElement("div");
+        tileItems.classList.add("tileItems");
+        selectedTile.appendChild(tileItems);
+
+        // Re-attach scroll behavior to this new tileItems
+        tileScroll();
+    }
+
+    // Create a new 'item' div
+    const newItem = document.createElement("div");
+    newItem.classList.add("item");
+    
+
+    // Append the new item
+    tileItems.appendChild(newItem);
 }
