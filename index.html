@@ -250,8 +250,32 @@
             
         </div>
 
-
-
+        <div id="eventFormWrapper">
+            <label for="addEventType" id="eventTypeLabel"></label>
+            <select id="addEventType" name="addEventType">
+                <option value="task" id="selectTask">Task</option>
+                <option value="alarm" id="selectAlarm">Alarm</option>
+            </select>
+            <br><br>
+            <div class="eventForm">
+                <h2 id="addEventTitle">Add Task</h2>
+                <label for="eventTitle"></label>
+                <input type="text" id="eventTitle" name="eventTitle" placeholder="Start Time"><br><br>
+                <label for="eventTime"></label>
+                <input type="text" id="eventTime" name="eventTime" placeholder="End Time"><br><br>
+                <button id="saveEvent">Save Event</button>
+                <button id="closeForm">Close</button>
+            </div>
+            <div class="eventForm">
+                <h2 id="addEventTitle">Add Alarm</h2>
+                <label for="alarmTitle"></label>
+                <input type="text" id="alarmTitle" name="AlarmTitle" placeholder="Start Time"><br><br>
+                <label for="endTime"></label>
+                <input type="text" id="endTime" name="endTime" placeholder="End Time"><br><br>
+                <button id="saveAlarm">Save Alarm</button>
+                <button id="closeAlarmForm">Close</button>
+            </div>
+        </div>
 
 
 

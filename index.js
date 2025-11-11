@@ -6,6 +6,7 @@
 5. make an 'x' in the sidebar to close it (then make the calendar move to center of page)
 6. make so you can add/delete events in frontend
 7. look into having no border on tiles (makes less clunky)
+8. make the dropdown menu to add events look cooler
 */
 
 
@@ -276,22 +277,24 @@ function setBackground(){
 
 
 function addEvent() {
-    // Find (or create) the tileItems container
     let tileItems = selectedTile.querySelector(".tileItems");
     if (!tileItems) {
         tileItems = document.createElement("div");
         tileItems.classList.add("tileItems");
         selectedTile.appendChild(tileItems);
 
-        // Re-attach scroll behavior to this new tileItems
         tileScroll();
     }
 
-    // Create a new 'item' div
     const newItem = document.createElement("div");
     newItem.classList.add("item");
     
 
-    // Append the new item
     tileItems.appendChild(newItem);
+}
+
+
+
+document.getElementById("selectTask").addEventListener("click", function() {
+
 }
