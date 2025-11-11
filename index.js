@@ -294,7 +294,6 @@ function addEvent() {
 }
 
 
-
-document.getElementById("selectTask").addEventListener("click", function() {
-
+function addAlarm() {
+    alert("hi");
 }
