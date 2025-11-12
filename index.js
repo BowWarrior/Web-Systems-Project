@@ -352,3 +352,12 @@ closeFormBtn.addEventListener("click", function () {
     eventForm.style.display = "none";
     hideAllInnerForms();
 });
+
+
+saveEvent.addEventListener("click", function () {
+    addEvent();
+});
+
+saveAlarm.addEventListener("click", function () {
+    addEvent();
+});
