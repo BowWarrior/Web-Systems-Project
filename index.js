@@ -294,6 +294,61 @@ function addEvent() {
 }
 
 
-function addAlarm() {
-    alert("hi");
+
+
+const eventForm = document.getElementById("eventFormWrapper");
+const closeFormBtn = document.getElementById("closeForm");
+const eventSelection = document.getElementById("addEventType");
+const saveEvent = document.getElementById("saveEvent");
+const saveAlarm = document.getElementById("saveAlarm");
+const forms = document.getElementsByClassName("taskForm"); 
+
+//hide all inner forms:
+function hideAllInnerForms() {
+    Array.from(forms).forEach(f => f.style.display = "none");
 }
+
+// show the correct inner form and save buttons based on selection value
+function showInnerFormForSelection() {
+    hideAllInnerForms();
+
+    if (eventSelection.value === "task") {
+        if (forms[0]){ 
+            forms[0].style.display = "block"
+        };
+        saveEvent.style.display = "inline-block";
+        saveAlarm.style.display = "none";
+    } else if (eventSelection.value === "alarm") {
+        if (forms[1]){
+            forms[1].style.display = "block";
+        }
+        saveEvent.style.display = "none";
+        saveAlarm.style.display = "inline-block";
+    } else {
+        saveEvent.style.display = "none";
+        saveAlarm.style.display = "none";
+    }
+}
+
+//toggle wrapper visibility
+function showForm() {
+  const isVisible = window.getComputedStyle(eventForm).display !== "none";
+  if (isVisible) {
+    //hide wrapper and all inner forms
+    eventForm.style.display = "none";
+    hideAllInnerForms();
+  } else {
+    //show wrapper and the inner forms
+    eventForm.style.display = "block";
+    showInnerFormForSelection();
+  }
+}
+
+eventSelection.addEventListener("change", function() {
+    showInnerFormForSelection();
+});
+
+closeFormBtn.addEventListener("click", function () {
+    eventForm.style.display = "none";
+    hideAllInnerForms();
+});

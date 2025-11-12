@@ -247,9 +247,10 @@
 
         <div id="sidePanel">
             <h1 id="sidePanelTitle">HI</h1>
-            <button id="addEvent" onclick="addEvent()">+</button>
+            <button id="addEvent" onclick="showForm()">+</button>
             
         </div>
+
 
         <div id="eventFormWrapper">
             <label for="addEventType" id="eventTypeLabel"></label>
@@ -257,24 +258,25 @@
                 <option value="task" id="selectTask">Task</option>
                 <option value="alarm" id="selectAlarm">Alarm</option>
             </select>
-            <br><br>
-            <div class="eventForm">
+
+            <div class="taskForm">
                 <h2 id="addEventTitle">Add Task</h2>
-                <label for="eventTitle"></label>
-                <input type="text" id="eventTitle" name="eventTitle" placeholder="Start Time"><br><br>
-                <label for="eventTime"></label>
-                <input type="text" id="eventTime" name="eventTime" placeholder="End Time"><br><br>
-                <button id="saveEvent">Save Event</button>
-                <button id="closeForm">Close</button>
+                <input type="text" id="eventName" name="eventName" placeholder="Event Name"><br><br>
+                <input type="text" id="eventStartTime" name="eventStartTime" placeholder="Start Time"><br><br>
+                <input type="text" id="eventEndTime" name="eventEndTime" placeholder="End Time"><br><br>
             </div>
-            <div class="eventForm">
+
+            <div class="taskForm">
                 <h2 id="addEventTitle">Add Alarm</h2>
-                <label for="alarmTitle"></label>
-                <input type="text" id="alarmTitle" name="AlarmTitle" placeholder="Start Time"><br><br>
-                <label for="endTime"></label>
-                <input type="text" id="endTime" name="endTime" placeholder="End Time"><br><br>
+                <input type="text" id="alarmName" name="alarmName" placeholder="Alarm Name"><br><br>
+                <input type="text" id="alarmStartTime" name="alarmStartTime" placeholder="Start Time"><br><br>
+                <input type="text" id="alarmEndTime" name="alarmEndTime" placeholder="End Time"><br><br>
+            </div>
+
+            <div id="formButtons">
+                <button id="saveEvent">Save Event</button>
                 <button id="saveAlarm">Save Alarm</button>
-                <button id="closeAlarmForm">Close</button>
+                <button id="closeForm">Close</button>
             </div>
         </div>
 
