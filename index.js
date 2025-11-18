@@ -1,10 +1,9 @@
 /*  FEATURES TO ADD:
 1. when you swipe up on phone with finger, make the selected day's events show up
 2. make the sidebar into an hour by hour view of the day's events
-3. make it so the a day can have an event
 4. make it so the sidebar shows the event that is connected to that day
-5. make an 'x' in the sidebar to close it (then make the calendar move to center of page)
-6. make so you can add/delete events in frontend
+5. make an 'x' in the sidebar to close it
+6. make so you can delete events in frontend
 7. look into having no border on tiles (makes less clunky)
 8. make the dropdown menu to add events look cooler
 */
@@ -51,8 +50,7 @@ for(let i = 0; i < tiles.length; i++){
         // If clicking the same tile, hide panel and exit
         if (selectedTile === tile) {
             sidePanel.style.opacity = "0";
-            calendar.style.transform = "translateX(50%)"; //causes an issue for phone and tablet layout
-            //calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
+            calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
             sidePanel.classList.remove("active");
             selectedTile = null; // deselect
             return;

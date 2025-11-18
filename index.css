@@ -127,6 +127,11 @@ body {
     position: relative;
     flex:1;
     background-color: red;
+    opacity: 0;
+    text-align: center;
+    color:white;
+    padding:0px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 #sidePanel.active {
@@ -178,12 +183,6 @@ body {
 .taskForm{
     display: none;
 }
-
-
-
-
-
-
 
 
 #addEventTitle {
@@ -299,17 +298,11 @@ input[type="text"]:focus {
         padding: 0;
         flex-shrink: 0;
     }
-    
 
     #sidePanel{
         height: 90vh;
         right:1vw;
-        text-align: center;
-        color:white;
-        padding:0px;
         margin:0px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        opacity: 0;
     }
 
     #sidePanelTitle{
@@ -338,7 +331,6 @@ input[type="text"]:focus {
         width:52px;
         height:52px;
     }
-
 
     .monthOfYear {
         flex: 0 0 auto;
@@ -413,12 +405,7 @@ input[type="text"]:focus {
     #sidePanel{
         height: 90vh;
         right:1vw;
-        text-align: center;
-        color:white;
-        padding:0px;
         margin:0px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        opacity: 0;
     }
 }
 
@@ -450,12 +437,17 @@ input[type="text"]:focus {
         grid-template-columns: repeat(7, 1fr); /* 7 columns for calendar */
         
     }
+    
     .tile{
         aspect-ratio: 1 / 1.25; /* keep square */
     }
 
     .monthOfYear {
         padding: 0.5em 0;
+    }
+
+    #sidePanel{
+        margin: 1vw;
     }
 
 
