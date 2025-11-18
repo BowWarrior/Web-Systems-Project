@@ -338,13 +338,9 @@ input[type="text"]:focus {
         right: 5%;
         background-color: green;
         cursor: pointer;
-
         
         box-shadow: 5px 5px 20px rgba(0, 0, 0, 1); /*x, y, darkness*/
         transition: transform 0.25s ease, box-shadow 0.25s ease, width .25s ease, height .25s ease;
-
-        
-
     }
 
     #addEvent:hover {
@@ -391,10 +387,49 @@ input[type="text"]:focus {
 @media (min-width: 481px) and (max-width: 1023px){
     
     body {
-        
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh; 
+        margin: 0;
+        padding: 0;
+        column-gap: 2vw;
+    }
+    .calendar{
+        position: relative;
+        height: 90vh;
+        width: 90vh;
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        margin-left: 1vw;
+        padding: 0;
+        transform: translate(50%);
+    }
+    .weekdayRowDiv{
+        width: 100%;
+    }
+    .tileGroup{
+        position: relative;
+        width: 100%;
+        grid-template-columns: repeat(7, 1fr);
     }
     .tile{
         background-color: blue;
+        aspect-ratio: 1/1;
+    }
+    .monthOfYear{
+        padding: 0.75em 0;
+    }
+    #sidePanel{
+        height: 90vh;
+        right:1vw;
+        text-align: center;
+        color:white;
+        padding:0px;
+        margin:0px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        opacity: 0;
     }
 }
 
