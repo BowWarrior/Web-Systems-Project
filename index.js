@@ -51,7 +51,8 @@ for(let i = 0; i < tiles.length; i++){
         // If clicking the same tile, hide panel and exit
         if (selectedTile === tile) {
             sidePanel.style.opacity = "0";
-            calendar.style.transform = "translateX(50%)";
+            calendar.style.transform = "translateX(50%)"; //causes an issue for phone and tablet layout
+            //calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
             sidePanel.classList.remove("active");
             selectedTile = null; // deselect
             return;

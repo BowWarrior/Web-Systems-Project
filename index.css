@@ -81,19 +81,9 @@ body {
     left: 0px;
 }
 
-
-
-
-
-
-
-
-
 .tileGroup{
     display: grid;
 }
-
-
 
 .weekdayRowDiv {
     display: grid;
@@ -397,14 +387,13 @@ input[type="text"]:focus {
         column-gap: 2vw;
     }
     .calendar{
-        position: relative;
         height: 90vh;
         width: 90vh;
         display: grid;
         grid-template-rows: auto auto 1fr;
         margin-left: 1vw;
         padding: 0;
-        transform: translate(50%);
+        transform: translate(25%);
     }
     .weekdayRowDiv{
         width: 100%;
