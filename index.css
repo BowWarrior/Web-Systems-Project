@@ -403,9 +403,12 @@ input[type="text"]:focus {
         padding: 0.75em 0;
     }
     #sidePanel{
-        height: 90vh;
-        right:1vw;
+        position: absolute;
+        height: 95vh;
+        width: 60vw;
         margin:0px;
+        top: 2.5vh;
+        left: 40vw;
     }
 }
 
