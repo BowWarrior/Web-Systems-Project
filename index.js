@@ -6,6 +6,7 @@
 6. make so you can delete events in frontend
 7. look into having no border on tiles (makes less clunky)
 8. make the dropdown menu to add events look cooler
+9. Need to navigate to different months
 */
 
 
@@ -287,8 +288,18 @@ function addEvent() {
 
     const newItem = document.createElement("div");
     newItem.classList.add("item");
-    
 
+    //must add deleteBtn in css, and specifically as child of item
+    //creates button so event can be deleted when clicked
+    //for testing purposes, this button only works for item events created here, doesn't work if button manually added to html
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.textContent = "X";
+    deleteBtn.addEventListener("click", () => {
+        newItem.remove();
+    });
+    
+    newItem.appendChild(deleteBtn);
     tileItems.appendChild(newItem);
 }
 
