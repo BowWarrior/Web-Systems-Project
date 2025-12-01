@@ -1,16 +1,18 @@
 /*  FEATURES TO ADD:
 1. when you swipe up on phone with finger, make the selected day's events show up
-2. make the sidebar into an hour by hour view of the day's events
+2. make the sidebar into an hour by hour view of the day's events (upon form submission, details must be saved somewhere as part of element)
 4. make it so the sidebar shows the event that is connected to that day
 5. make an 'x' in the sidebar to close it
 7. look into having no border on tiles (makes less clunky)
-8. make the dropdown menu to add events look cooler
+8. make the dropdown menu to add events look cooler (and fix for tablet/phone view)
 9. Need to navigate to different months
-10. Button for adding events needs to be in tablet and phone view
+10. We're not meeting outside link navigation requirements
+13. delete extra events items written in html page, they should only be added with the button
 
 Completed features:
 6. make so you can delete events in frontend
 11. when click button to delete event, side panel also is clicked. Change this so it doesn't happen
+12. make event titles appear on calendar
 */
 
 
@@ -304,6 +306,14 @@ function addEvent() {
         e.stopPropagation(); //prevents calling parent click function to open/close sidepanel
         newItem.remove();
     });
+
+    //display title of event on calendar
+    //time will be display in side panel when item expanded, but somehow has to be stored someplace in the meantime (needs to be modified)
+    if (document.getElementById("eventName").value){ //proceed if eventName has a value
+        newItem.innerHTML = document.getElementById("eventName").value;
+    }else if(document.getElementById("alarmName").value){ //proceed if alarmName has a value
+        newItem.innerHTML = document.getElementById("alarmName").value;
+    }
     
     newItem.appendChild(deleteBtn);
     tileItems.appendChild(newItem);
@@ -321,7 +331,10 @@ const forms = document.getElementsByClassName("taskForm");
 
 //hide all inner forms:
 function hideAllInnerForms() {
-    Array.from(forms).forEach(f => f.style.display = "none");
+    Array.from(forms).forEach(f => {
+        f.style.display = "none"; //hide elements
+        Array.from(f.querySelectorAll('input[type="text"]')).forEach(input => input.value = "");//clear text inputs
+    });
 }
 
 // show the correct inner form and save buttons based on selection value

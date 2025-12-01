@@ -64,13 +64,15 @@ body {
 
 
 .item {
-    background-color: green;
+    background-color: rgb(67, 143, 67);
     width: 90%;
     height: 20%;
     border-radius: 4px;
     flex-shrink: 0;
     margin: 2px 0;
     position: relative;
+    font-size: 12px;
+    text-indent: 2px; /*used text-indent because padding messed with box display*/
 }
 
 /* applies to any deleteBtn inside of item, no matter the depth */
@@ -288,7 +290,7 @@ input[type="text"]:focus {
 
 
 
-/*for pc *//* for pc */
+/*for pc */
 @media (min-width: 1024px) {
     body {
         display: flex;
@@ -410,7 +412,7 @@ input[type="text"]:focus {
         grid-template-columns: repeat(7, 1fr);
     }
     .tile{
-        background-color: blue;
+        background-color: skyblue;
         aspect-ratio: 1/1;
     }
     .monthOfYear{
@@ -465,6 +467,10 @@ input[type="text"]:focus {
 
     #sidePanel{
         margin: 1vw;
+    }
+
+    .item {
+        font-size: 8px;
     }
 
     .item .deleteBtn{
