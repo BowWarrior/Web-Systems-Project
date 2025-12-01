@@ -3,11 +3,17 @@
 2. make the sidebar into an hour by hour view of the day's events
 4. make it so the sidebar shows the event that is connected to that day
 5. make an 'x' in the sidebar to close it
-6. make so you can delete events in frontend
 7. look into having no border on tiles (makes less clunky)
 8. make the dropdown menu to add events look cooler
 9. Need to navigate to different months
+10. Button for adding events needs to be in tablet and phone view
+
+Completed features:
+6. make so you can delete events in frontend
+11. when click button to delete event, side panel also is clicked. Change this so it doesn't happen
 */
+
+
 
 
 /*Could be useful later:
@@ -289,13 +295,13 @@ function addEvent() {
     const newItem = document.createElement("div");
     newItem.classList.add("item");
 
-    //must add deleteBtn in css, and specifically as child of item
     //creates button so event can be deleted when clicked
     //for testing purposes, this button only works for item events created here, doesn't work if button manually added to html
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("deleteBtn");
     deleteBtn.textContent = "X";
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); //prevents calling parent click function to open/close sidepanel
         newItem.remove();
     });
     
