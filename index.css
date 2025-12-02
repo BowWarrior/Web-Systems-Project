@@ -2,7 +2,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background-color:lightblue;
     padding:0%;
     margin:0%;
     background-image: url('images/glob.gif');
@@ -142,8 +141,8 @@ body {
     pointer-events: none;/*not clickable when hidden*/
     position: relative;
     flex:1;
-    background-color: red;
-    opacity: 0;
+    background-color: white;
+    opacity:0;
     text-align: center;
     color:white;
     padding:0px;
@@ -157,13 +156,13 @@ body {
 
 
 #eventFormWrapper{
+    background-color:rgba(0, 0, 0, 0.8);
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width:50%;
     height:50%;
-    background-color: lightblue;
     border-radius: 15px;
     text-align: center;
     justify-content: center;
@@ -265,12 +264,61 @@ input[type="text"]:focus {
   display: none;
 }
 
+#calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+#calendarHeader button {
+    background:none;
+    -webkit-text-stroke: 1px black; /* proper vendor prefix */
+    -moz-text-stroke: 1px black;    /* Firefox support */
+    color: white;
+    border: none;
+    padding: 0;
+    font-size: 3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-shadow:
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black; /* 4-way stroke */
+    transition: transform 0.2s, color 0.2s;
+}
+
+#calendarHeader button:hover {
+    transform: scale(1.1);
+    color: #1ae9f0;
+}
+
+#closePanel{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+}
 
 
-
-
-
-
+    #addEvent {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+        background-color: green;
+        cursor: pointer;
+        
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 1); /*x, y, darkness*/
+        transition: transform 0.25s ease, box-shadow 0.25s ease, width .25s ease, height .25s ease;
+    }
 
 
 
@@ -296,15 +344,15 @@ input[type="text"]:focus {
         display: flex;
         flex-direction: row; /* ensures side-by-side layout */
         align-items: center; /* vertical centering */
-        justify-content: flex-start; /* start layout from left */
+        justify-content: center;
         height: 100vh; /* needed for vertical centering */
         margin: 0;
         padding: 0;
-        column-gap: 2vw; /* small consistent gap */
+        column-gap: .75vw; /* small consistent gap */
+        padding-right: 1vw;
     }
 
     .calendar {
-        transform: translate(50%);
         position: relative;
         height: 90vh;
         width: 90vh;
@@ -315,11 +363,25 @@ input[type="text"]:focus {
         flex-shrink: 0;
     }
 
-    #sidePanel{
-        height: 90vh;
-        right:1vw;
-        margin:0px;
+    #sidePanel {
+        flex: 0 0 0;
+        width: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: flex 0.35s ease, width 0.35s ease, opacity 0.2s ease;
     }
+
+
+    #sidePanel.active {
+        flex: 1;              /* take all leftover space */
+        width: auto;          /* let flexbox decide */
+        height: 90vh;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+
 
     #sidePanelTitle{
         margin: 0;
@@ -328,19 +390,7 @@ input[type="text"]:focus {
         top:0px;
     }
 
-    #addEvent {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        bottom: 5%;
-        right: 5%;
-        background-color: green;
-        cursor: pointer;
-        
-        box-shadow: 5px 5px 20px rgba(0, 0, 0, 1); /*x, y, darkness*/
-        transition: transform 0.25s ease, box-shadow 0.25s ease, width .25s ease, height .25s ease;
-    }
+
 
     #addEvent:hover {
         transform: translateY(-1px);
@@ -382,49 +432,69 @@ input[type="text"]:focus {
 }
 
 /*for tablet */
-@media (min-width: 481px) and (max-width: 1023px){
-    
-    body {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        height: 100vh; 
+@media (min-width: 481px) and (max-width: 1023px) {
+
+    body, html {
+        height: 100%;
         margin: 0;
         padding: 0;
-        column-gap: 2vw;
     }
-    .calendar{
-        height: 90vh;
-        width: 90vh;
+
+    body {
+        min-height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+    }
+
+    .calendar {
+        width: 90vw;
+        height: 90vw;
+        max-height: 90vh;
+        max-width: 90vh;
+        margin: 0 auto;
+        padding: 0;
         display: grid;
         grid-template-rows: auto auto 1fr;
-        margin-left: 1vw;
-        padding: 0;
-        transform: translate(25%);
     }
-    .weekdayRowDiv{
+
+    .weekdayRowDiv {
         width: 100%;
     }
-    .tileGroup{
+
+    .tileGroup {
         position: relative;
         width: 100%;
         grid-template-columns: repeat(7, 1fr);
     }
-    .tile{
-        background-color: skyblue;
-        aspect-ratio: 1/1;
+
+    .tile {
+        aspect-ratio: 1 / 1;
     }
-    .monthOfYear{
+
+    .monthOfYear {
         padding: 0.75em 0;
     }
-    #sidePanel{
-        position: absolute;
-        height: 95vh;
-        width: 60vw;
-        margin:0px;
-        top: 2.5vh;
-        left: 40vw;
+
+    #sidePanel {
+        position: fixed;       /* always fixed at the bottom */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        height: 35vh;          /* default height */
+        transition: height 0.35s ease; /* smooth expand/collapse */
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2); /* subtle shadow on top */
+        overflow: auto;        /* scroll if content overflows */
+    }
+
+    #sidePanel.expanded {
+        position:fixed;
+        height: 70vh;
+    }
+    #sidePanel.contracted {
+        height: 35vh;
     }
 }
 
@@ -432,12 +502,20 @@ input[type="text"]:focus {
 
 /*for phone */
 @media (max-width: 480px){
+    body, html{
+        height:100%;
+        margin:0;
+        padding:0;
+    }
     html {
         overflow-x: hidden; /*prevents horizontal scrolling (need both)*/
     }
     body{
         overflow-x: hidden; /*prevents horizontal scrolling (need both)*/
         width: 100vw;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
     .calendar{
         top:0%;
@@ -466,7 +544,23 @@ input[type="text"]:focus {
     }
 
     #sidePanel{
-        margin: 1vw;
+        position: fixed;    /*overlap everything*/
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0px;
+        opacity: 0.9;
+        background-color: white;
+        height: 35vh;
+        transition: height 0.35s ease;
+        z-index: 999;    /*makes sure it overlaps calendar*/
+    }
+
+    #sidePanel.expanded {
+        height: 70vh;
+    }
+    #sidePanel.contracted {
+        height: 35vh;
     }
 
     .item {

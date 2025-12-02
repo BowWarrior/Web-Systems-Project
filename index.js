@@ -1,21 +1,13 @@
 /*  FEATURES TO ADD:
 1. when you swipe up on phone with finger, make the selected day's events show up
-2. make the sidebar into an hour by hour view of the day's events (upon form submission, details must be saved somewhere as part of element)
+2. make the sidebar into an hour by hour view of the day's events
 4. make it so the sidebar shows the event that is connected to that day
 5. make an 'x' in the sidebar to close it
-7. look into having no border on tiles (makes less clunky)
-8. make the dropdown menu to add events look cooler (and fix for tablet/phone view)
-9. Need to navigate to different months
-10. We're not meeting outside link navigation requirements
-13. delete extra events items written in html page, they should only be added with the button
-
-Completed features:
 6. make so you can delete events in frontend
-11. when click button to delete event, side panel also is clicked. Change this so it doesn't happen
-12. make event titles appear on calendar
+7. look into having no border on tiles (makes less clunky)
+8. make the dropdown menu to add events look cooler
+9. add recurring alarms and tasks
 */
-
-
 
 
 /*Could be useful later:
@@ -78,6 +70,7 @@ for(let i = 0; i < tiles.length; i++){
 
         sidePanelTitle.innerHTML = `${fullDate}`;
         sidePanel.style.opacity = "1";
+        sidePanel.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
         calendar.style.transform = "translateX(0%)";
         sidePanel.classList.add("active");
     });
@@ -283,47 +276,67 @@ function setBackground(){
     //tiles[i].innerText = "test"; //sets text of the div to the day
     //tiles[i].appendChild(newDiv); //or just 'tile' if you wanna do it to all of them 
 
-
 function addEvent() {
+    const startInput = document.getElementById("eventStartTime");
+    console.log("Start time", startInput.value);
+    const endInput = document.getElementById("eventEndTime");
+    console.log("Start time", endInput.value);
+    const titleInput = document.getElementById("eventName");
+    const eventName = titleInput.value.toLowerCase();
+    console.log("Event to add:", eventName);
+
+    const taskData = {
+        date: selectedTile.querySelector(".dayNum").dataset.date.split("T")[0],
+        start_time: startInput ? startInput.value : null,
+        end_time: endInput ? endInput.value : null,
+        type: "task",
+        title: eventName,
+        //can add for later functionality:
+        //description: descInput ? descInput.value : "",
+        recurring: "none"
+    };
+
+    saveEventToDB(taskData).then(data => {
+            if (data.status === "success") {
+                addEventToTile(taskData);
+            }
+        });
+}
+
+
+// ------------------------------
+// SAVE TO DATABASE
+// ------------------------------
+function saveEventToDB(taskData) {
+    return fetch("save_event.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(taskData)
+    })
+    .then(res => res.json());
+}
+
+
+// ------------------------------
+// ADD VISUALLY TO A TILE
+// ------------------------------
+function addEventToTile(taskData) {
     let tileItems = selectedTile.querySelector(".tileItems");
+
     if (!tileItems) {
         tileItems = document.createElement("div");
         tileItems.classList.add("tileItems");
         selectedTile.appendChild(tileItems);
-
         tileScroll();
     }
 
     const newItem = document.createElement("div");
     newItem.classList.add("item");
+    newItem.innerText = taskData.title;
 
-    //creates button so event can be deleted when clicked
-    //for testing purposes, this button only works for item events created here, doesn't work if button manually added to html
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("deleteBtn");
-    deleteBtn.textContent = "X";
-    deleteBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); //prevents calling parent click function to open/close sidepanel
-        newItem.remove();
-    });
-
-    //display title of event on calendar
-    //time will be display in side panel when item expanded, but somehow has to be stored someplace in the meantime (needs to be modified)
-    if (document.getElementById("eventName").value){ //proceed if eventName has a value
-        newItem.dataset.title = document.getElementById("eventName").value;
-        newItem.dataset.startTime = document.getElementById("eventStartTime").value; //times are stored as strings
-        newItem.dataset.endTime = document.getElementById("eventEndTime").value;
-        newItem.innerHTML = newItem.dataset.title;
-    }else if(document.getElementById("alarmName").value){ //proceed if alarmName has a value
-        newItem.dataset.title = document.getElementById("alarmName").value;
-        newItem.dataset.startTime = document.getElementById("alarmStartTime").value; //times are stored as strings
-        newItem.dataset.endTime = document.getElementById("alarmEndTime").value;
-        newItem.innerHTML = newItem.dataset.title;
-    }
-    
-    newItem.appendChild(deleteBtn);
     tileItems.appendChild(newItem);
 }
+
 
 
 
@@ -337,10 +350,8 @@ const forms = document.getElementsByClassName("taskForm");
 
 //hide all inner forms:
 function hideAllInnerForms() {
-    Array.from(forms).forEach(f => {
-        f.style.display = "none"; //hide elements
-        Array.from(f.querySelectorAll('input[type="text"]')).forEach(input => input.value = "");//clear text inputs
-    });
+    Array.from(forms).forEach(f => f.style.display = "none");
+    
 }
 
 // show the correct inner form and save buttons based on selection value
@@ -390,9 +401,71 @@ closeFormBtn.addEventListener("click", function () {
 
 
 saveEvent.addEventListener("click", function () {
+    eventForm.style.display = "none";
     addEvent();
 });
 
 saveAlarm.addEventListener("click", function () {
+    eventForm.style.display = "none";
     addEvent();
 });
+
+
+
+
+
+
+
+//for phone view swipe up:
+let touchStartY = 0;
+
+document.addEventListener("touchstart", e => {
+    touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener("touchend", e => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const swipeDistance = touchStartY - touchEndY;
+    const sidePanel = document.getElementById("sidePanel");
+
+    //detects swipe up (you can adjust 50 px threshold)
+    if (swipeDistance > 50) {
+        sidePanel.classList.add("expanded");
+        sidePanel.classList.remove("contracted");
+    }
+    if (swipeDistance < -50) {
+        sidePanel.classList.remove("expanded");
+        sidePanel.classList.add("contracted");
+    }
+});
+
+
+
+
+function prevMonth(){
+    month--;
+    if(month < 1){
+        month = 12;
+        year--;
+    }
+    clearTiles();
+    fillMonth(year, month);
+}
+
+function nextMonth(){
+    month++;
+    if(month > 12){
+        month = 1;
+        year++;
+    }
+    clearTiles();
+    fillMonth(year, month);
+}
+
+
+function closeSidePanel(){
+    sidePanel.style.opacity = "0";
+    calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
+    sidePanel.classList.remove("active");
+    selectedTile = null; // deselect
+}
