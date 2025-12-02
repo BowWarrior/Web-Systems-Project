@@ -310,9 +310,15 @@ function addEvent() {
     //display title of event on calendar
     //time will be display in side panel when item expanded, but somehow has to be stored someplace in the meantime (needs to be modified)
     if (document.getElementById("eventName").value){ //proceed if eventName has a value
-        newItem.innerHTML = document.getElementById("eventName").value;
+        newItem.dataset.title = document.getElementById("eventName").value;
+        newItem.dataset.startTime = document.getElementById("eventStartTime").value; //times are stored as strings
+        newItem.dataset.endTime = document.getElementById("eventEndTime").value;
+        newItem.innerHTML = newItem.dataset.title;
     }else if(document.getElementById("alarmName").value){ //proceed if alarmName has a value
-        newItem.innerHTML = document.getElementById("alarmName").value;
+        newItem.dataset.title = document.getElementById("alarmName").value;
+        newItem.dataset.startTime = document.getElementById("alarmStartTime").value; //times are stored as strings
+        newItem.dataset.endTime = document.getElementById("alarmEndTime").value;
+        newItem.innerHTML = newItem.dataset.title;
     }
     
     newItem.appendChild(deleteBtn);
