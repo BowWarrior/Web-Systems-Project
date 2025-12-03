@@ -73,6 +73,7 @@ for(let i = 0; i < tiles.length; i++){
         sidePanel.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
         calendar.style.transform = "translateX(0%)";
         sidePanel.classList.add("active");
+        sidePanelEvents();
     });
 
 
@@ -80,6 +81,32 @@ for(let i = 0; i < tiles.length; i++){
     /*if(tile = tiles[17]){
         tile.style.backgroundColor = "red";
     }*/
+}
+
+function sidePanelEvents(){
+    sidePanel.querySelectorAll(".eventDetails").forEach(item => item.remove()); //clears events previously 
+    let tileItems = selectedTile.querySelector(".tileItems");
+    if (!tileItems){
+        return;
+    }
+
+    
+    Array.from(tileItems.querySelectorAll(".item")).forEach(item => {
+        let eventDesc = document.createElement("div");
+        eventDesc.classList.add("eventDetails") //make this in css
+        eventDesc.innerText = item.dataset.title + " from " + item.dataset.startTime + " to " + item.dataset.endTime;
+        sidePanel.append(eventDesc);
+    });
+
+    //probably an issue with manually added items not having a title
+    //Array.from(forms).forEach(f => {
+    //tileItems.array.forEach(element => {  });
+    //for (item in tileItems){ }
+    // const newP = document.createElement("p");
+    //     newP.classList.add("dayNum");
+    //     newP.innerText = daysInPrevMonth - (startWeekday - 1 - i); // set text on <p>
+    //     newP.dataset.date = new Date(year, month - 2, newP.innerText).toISOString(); //(for filling in side panel)
+    //     tiles[i].appendChild(newP);
 }
 
 
@@ -334,7 +361,36 @@ function addEventToTile(taskData) {
     newItem.classList.add("item");
     newItem.innerText = taskData.title;
 
+    //creates button so event can be deleted when clicked
+    //for testing purposes, this button only works for item events created here, doesn't work if button manually added to html
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.textContent = "X";
+    deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); //prevents calling parent click function to open/close sidepanel
+        newItem.remove();
+    });
+
+    //display title of event on calendar
+    //time will be display in side panel when item expanded, but somehow has to be stored someplace in the meantime (needs to be modified)
+    if (document.getElementById("eventName").value){ //proceed if eventName has a value
+        newItem.dataset.title = document.getElementById("eventName").value;
+        newItem.dataset.startTime = document.getElementById("eventStartTime").value; //times are stored as strings
+        newItem.dataset.endTime = document.getElementById("eventEndTime").value;
+        newItem.innerHTML = newItem.dataset.title;
+    }else if(document.getElementById("alarmName").value){ //proceed if alarmName has a value
+        //the form information is saved in a way that won't differentiate between alarm or task
+        newItem.dataset.title = document.getElementById("alarmName").value;
+        newItem.dataset.startTime = document.getElementById("alarmStartTime").value; //times are stored as strings
+        newItem.dataset.endTime = document.getElementById("alarmEndTime").value; 
+        newItem.innerHTML = newItem.dataset.title;
+    }
+    
+    newItem.appendChild(deleteBtn);
     tileItems.appendChild(newItem);
+    sidePanelEvents();
+
+    //should somehow edit side panel
 }
 
 

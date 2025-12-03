@@ -147,11 +147,27 @@ body {
     color:white;
     padding:0px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    overflow: auto; /*expands container to fit all day's events if necessary*/
 }
 
 #sidePanel.active {
     opacity: 1;
     pointer-events: auto; /*clickable when visible*/
+}
+
+.eventDetails{
+    /*still have to adjust text for phone*/
+    /*maybe turn off text shading*/
+    display: flex;
+    align-items: center; /*vertical centering*/
+    justify-content: center;
+    background-color: lightblue;
+    width: 90%;
+    height: 10%;
+    border-radius: 4px;
+    margin: 0px auto 2px auto; /*0px top, 2px bottom, left/right on auto*/
+    font-size: 20px;
+    text-indent: 2px; /*used text-indent because padding messed with box display*/
 }
 
 
@@ -573,6 +589,9 @@ input[type="text"]:focus {
     font-size: 5px;
     height: 8px;
     width: 8px;
+    }
+    .eventDetails{
+        font-size: 10px;
     }
 }
 
