@@ -6,6 +6,8 @@
 <body>
 
 <?php
+
+//TODO add alarm table when its a feature of the website
 //connect to mysql
 
 $servername = "localhost";
