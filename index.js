@@ -323,12 +323,11 @@ function addEvent() {
         recurring: "none"
     };
     console.log(taskData.date);
-
     saveEventToDB(taskData).then(data => {
-            if (data.status === "success") {
-                addEventToTile(taskData);
-            }
-        });
+        if (data.status === "success"){
+            addEventToTile(taskData);
+        }
+    });
 }
 
 
@@ -341,11 +340,11 @@ function saveEventToDB(taskData) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(taskData)
     })
-    .then(res => res.text())
-    .then(data => {
-        console.log("PHP returned:", data);
-        return data;
-    });
+    .then(res => res.json())
+    // .then(data => {
+    //     console.log("PHP returned:", data);
+    //     return data;
+    // });
 }
 
 
@@ -353,6 +352,7 @@ function saveEventToDB(taskData) {
 // ADD VISUALLY TO A TILE
 // ------------------------------
 function addEventToTile(taskData) {
+    console.log("ran");
     let tileItems = selectedTile.querySelector(".tileItems");
 
     if (!tileItems) {

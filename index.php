@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>My Web Page</title>
         <link rel="stylesheet" href="index.css" />
-        <script src="index.js" defer></script>
+        <script src="index.js?v=2" defer></script> 
+        <!-- really annoying cache bug so website still updates from server on reload -->
     </head>
     <body>
 
@@ -33,221 +34,170 @@
             <div class="tileGroup">
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tileItems">
-                        <div class="item"></div>
                     </div>
                 </div>
             </div>

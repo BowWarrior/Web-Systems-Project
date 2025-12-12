@@ -2,8 +2,6 @@
     //TODO create a way to login and validate a user
 
 
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
     //connect to mysql
     header("Content-Type: application/json");
     $servername = "localhost";
@@ -28,7 +26,6 @@
     $event = json_decode($event,true);
     //echo json_encode($event);
 
-    $userID = 1; //$event["userID"];
     $eventDate = $event["date"];
     $startTime = $event["start_time"];
     $endTime = $event["end_time"];
@@ -36,16 +33,11 @@
     $eventTitle = $event["title"];
     
 
-    $sql = "INSERT INTO events (userID,eventDate,startTime,endTime,eventType,eventTitle)
-            VALUES ($userID,'$eventDate','$startTime','$endTime','$eventType','$eventTitle')";
+    $sql = "INSERT INTO events (eventDate,startTime,endTime,eventType,eventTitle)
+            VALUES ('$eventDate','$startTime','$endTime','$eventType','$eventTitle')";
     if ($conn->query($sql) === true){
-        echo "yuh";
+        echo json_encode(["status" => "success"]);
     }else{
         echo "$conn->error";
     };
-
-    
-
-
-
 ?>
