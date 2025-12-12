@@ -307,7 +307,7 @@ function addEvent() {
     const startInput = document.getElementById("eventStartTime");
     console.log("Start time", startInput.value);
     const endInput = document.getElementById("eventEndTime");
-    console.log("Start time", endInput.value);
+    console.log("End time", endInput.value);
     const titleInput = document.getElementById("eventName");
     const eventName = titleInput.value.toLowerCase();
     console.log("Event to add:", eventName);
@@ -322,6 +322,7 @@ function addEvent() {
         //description: descInput ? descInput.value : "",
         recurring: "none"
     };
+    console.log(taskData.date);
 
     saveEventToDB(taskData).then(data => {
             if (data.status === "success") {
@@ -340,7 +341,11 @@ function saveEventToDB(taskData) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(taskData)
     })
-    .then(res => res.json());
+    .then(res => res.text())
+    .then(data => {
+        console.log("PHP returned:", data);
+        return data;
+    });
 }
 
 
