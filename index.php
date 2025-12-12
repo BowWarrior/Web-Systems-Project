@@ -272,15 +272,15 @@
             <div class="taskForm">
                 <h2 id="addEventTitle">Add Task</h2>
                 <input type="text" id="eventName" name="eventName" placeholder="Event Name"><br><br>
-                <input type="text" id="eventStartTime" name="eventStartTime" placeholder="Start Time"><br><br>
-                <input type="text" id="eventEndTime" name="eventEndTime" placeholder="End Time"><br><br>
+                <div><p>Event start time</p><input type="time" id="eventStartTime" name="eventStartTime"></div><br><br>
+                <div><p>Event end time</p><input type="time" id="eventEndTime" name="eventEndTime"></div><br><br>
             </div>
 
             <div class="taskForm">
                 <h2 id="addEventTitle">Add Alarm</h2>
                 <input type="text" id="alarmName" name="alarmName" placeholder="Alarm Name"><br><br>
-                <input type="text" id="alarmStartTime" name="alarmStartTime" placeholder="Start Time"><br><br>
-                <input type="text" id="alarmEndTime" name="alarmEndTime" placeholder="End Time"><br><br>
+                <div><p>Alarm start time</p><input type="time" id="alarmStartTime" name="alarmStartTime"></div><br><br>
+                <div><p>Alarm end time</p><input type="time" id="alarmEndTime" name="alarmEndTime"></div><br><br>
             </div>
 
             <div id="formButtons">

@@ -178,7 +178,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     width:50%;
-    height:50%;
+    height:60%;
     border-radius: 15px;
     text-align: center;
     justify-content: center;
@@ -213,6 +213,15 @@ body {
 
 .taskForm{
     display: none;
+}
+.taskForm>div>p{
+    color: white;
+    margin: auto 10px auto 0px;
+}
+.taskForm>div{
+    display: flex;
+    justify-content: center;
+    height: 40px;
 }
 
 
