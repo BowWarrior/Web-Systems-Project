@@ -253,44 +253,50 @@ tileScroll();
 
 
 function setBackground(){
+    let bg = document.getElementById("bgImg"); //background image
+
+    if(!bg){
+        bg = document.createElement("img");
+        bg.id = "bgImg";
+        document.body.prepend(bg);
+    }
+
     if(displayedMonth.innerHTML.includes("Jan")){
-        document.body.style.backgroundImage = "url('images/january2.jpg')";
-        
+        bg.src="images/january2.jpg";
+        bg.alt="background image of snowy trees";
     } else if(displayedMonth.innerHTML.includes("Feb")){
-        document.body.style.backgroundImage = "url('images/february2.jpg')";
-
+        bg.src="images/february2.jpg";
+        bg.alt="background image of heart on tree";
     } else if(displayedMonth.innerHTML.includes("Mar")){
-        document.body.style.backgroundImage = "url('images/march.jpg')";
-
+        bg.src="images/march.jpg";
+        bg.alt="background image of tulips";
     } else if(displayedMonth.innerHTML.includes("Apr")){
-        document.body.style.backgroundImage = "url('images/april.jpg')";
-
+        bg.src="images/april.jpg";
+        bg.alt="background image of purple flowers";
     } else if(displayedMonth.innerHTML.includes("May")){
-        document.body.style.backgroundImage = "url('images/may.jpg')";
-
+        bg.src="images/may.jpg";
+        bg.alt="background image of pink May flowers";
     } else if(displayedMonth.innerHTML.includes("Jun")){
-        document.body.style.backgroundImage = "url('images/june.jpg')";
-
+        bg.src="images/june.jpg";
+        bg.alt="background image of wildflowers";
     } else if(displayedMonth.innerHTML.includes("Jul")){
-        document.body.style.backgroundImage = "url('images/july.webp')";
-        //document.body.insertAdjacentHTML('afterbegin', "<div style='position:fixed;inset:0;background:url(images/july.webp) center/cover no-repeat;transform:scaleX(-1);z-index:-1;'></div>");
-
+        bg.src="images/july.webp";
+        bg.alt="background image of ocean sunset";
     } else if(displayedMonth.innerHTML.includes("Aug")){
-        document.body.style.backgroundImage = "url('images/august.jpg')";
-
+        bg.src="images/august.jpg";
+        bg.alt="background image of wheat field";
     } else if(displayedMonth.innerHTML.includes("Sep")){
-        document.body.style.backgroundImage = "url('images/september2.jpg')";
-
+        bg.src="images/september2.jpg";
+        bg.alt="background image of fall leaves";
     } else if(displayedMonth.innerHTML.includes("Oct")){
-        document.body.style.backgroundImage = "url('images/october4.jpg')";
-
+        bg.src="images/october4.jpg";
+        bg.alt="background image of glowing pumpkins";
     } else if(displayedMonth.innerHTML.includes("Nov")){
-        document.body.style.backgroundImage = "url('images/november2.jpg')";
-
+        bg.src="images/november2.jpg";
+        bg.alt="background image of pie";
     } else if(displayedMonth.innerHTML.includes("Dec")){
-        document.body.style.backgroundImage = "url('images/december3.jpg')";
-        //document.getElementsByClassName("weekdayRowDiv")[0].style.color = "#dafacf";
-
+        bg.src="images/december3.jpg";
+        bg.alt="background image of holiday lights";
     }
 }
 

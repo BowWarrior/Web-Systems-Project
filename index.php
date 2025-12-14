@@ -6,7 +6,8 @@
         <title>My Web Page</title>
         <link rel="stylesheet" href="index.css" />
         <script src="index.js?v=2" defer></script> 
-        <!-- really annoying cache bug so website still updates from server on reload -->
+        <!-- really annoying cache bug so website still updates from server on reload
+            Could also hit Ctrl+Shift+R for a hard reload of the browser to fix caching issue -->
     </head>
     <body>
 
