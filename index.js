@@ -517,6 +517,7 @@ function prevMonth(){
     }
     clearTiles();
     fillMonth(year, month);
+    tileScroll();
 }
 
 function nextMonth(){
@@ -527,6 +528,7 @@ function nextMonth(){
     }
     clearTiles();
     fillMonth(year, month);
+    tileScroll();
 }
 
 
