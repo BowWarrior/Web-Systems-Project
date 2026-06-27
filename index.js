@@ -1,12 +1,12 @@
 /*  FEATURES TO ADD:
 1. when you swipe up on phone with finger, make the selected day's events show up
 2. make the sidebar into an hour by hour view of the day's events
-3. make it so the a day can have an event
 4. make it so the sidebar shows the event that is connected to that day
-5. make an 'x' in the sidebar to close it (then make the calendar move to center of page)
-6. make so you can add/delete events in frontend
+5. make an 'x' in the sidebar to close it
+6. make so you can delete events in frontend
 7. look into having no border on tiles (makes less clunky)
 8. make the dropdown menu to add events look cooler
+9. add recurring alarms and tasks
 */
 
 
@@ -51,7 +51,7 @@ for(let i = 0; i < tiles.length; i++){
         // If clicking the same tile, hide panel and exit
         if (selectedTile === tile) {
             sidePanel.style.opacity = "0";
-            calendar.style.transform = "translateX(50%)";
+            calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
             sidePanel.classList.remove("active");
             selectedTile = null; // deselect
             return;
@@ -70,6 +70,7 @@ for(let i = 0; i < tiles.length; i++){
 
         sidePanelTitle.innerHTML = `${fullDate}`;
         sidePanel.style.opacity = "1";
+        sidePanel.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
         calendar.style.transform = "translateX(0%)";
         sidePanel.classList.add("active");
     });
@@ -278,20 +279,21 @@ function setBackground(){
 
 function addEvent() {
     let tileItems = selectedTile.querySelector(".tileItems");
+
     if (!tileItems) {
         tileItems = document.createElement("div");
         tileItems.classList.add("tileItems");
         selectedTile.appendChild(tileItems);
-
         tileScroll();
     }
 
     const newItem = document.createElement("div");
     newItem.classList.add("item");
-    
+    newItem.innerText = taskData.title;    
 
     tileItems.appendChild(newItem);
 }
+
 
 
 
@@ -306,6 +308,7 @@ const forms = document.getElementsByClassName("taskForm");
 //hide all inner forms:
 function hideAllInnerForms() {
     Array.from(forms).forEach(f => f.style.display = "none");
+
 }
 
 // show the correct inner form and save buttons based on selection value
@@ -355,9 +358,71 @@ closeFormBtn.addEventListener("click", function () {
 
 
 saveEvent.addEventListener("click", function () {
+    eventForm.style.display = "none";
     addEvent();
 });
 
 saveAlarm.addEventListener("click", function () {
+    eventForm.style.display = "none";
     addEvent();
 });
+
+
+
+
+
+
+
+//for phone view swipe up:
+let touchStartY = 0;
+
+document.addEventListener("touchstart", e => {
+    touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener("touchend", e => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const swipeDistance = touchStartY - touchEndY;
+    const sidePanel = document.getElementById("sidePanel");
+
+    //detects swipe up (you can adjust 50 px threshold)
+    if (swipeDistance > 50) {
+        sidePanel.classList.add("expanded");
+        sidePanel.classList.remove("contracted");
+    }
+    if (swipeDistance < -50) {
+        sidePanel.classList.remove("expanded");
+        sidePanel.classList.add("contracted");
+    }
+});
+
+
+
+
+function prevMonth(){
+    month--;
+    if(month < 1){
+        month = 12;
+        year--;
+    }
+    clearTiles();
+    fillMonth(year, month);
+}
+
+function nextMonth(){
+    month++;
+    if(month > 12){
+        month = 1;
+        year++;
+    }
+    clearTiles();
+    fillMonth(year, month);
+}
+
+
+function closeSidePanel(){
+    sidePanel.style.opacity = "0";
+    calendar.style.transform = ""; //reverts calendar to css transform rules (media queries take over)
+    sidePanel.classList.remove("active");
+    selectedTile = null; // deselect
+}
