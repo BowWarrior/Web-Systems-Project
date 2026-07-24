@@ -1,0 +1,15 @@
+Shortcut to start server:
+	* python app.py
+	* (possible because of this line in app.py):
+		* app.run(host="100.117.48.119", port=5000)
+
+In future can experiment with:
+	* flask --app app run
+	* then either tailscale serve or tailscale funnel the 127 ip over the internet
+
+
+How to start server for personal usage over tailscale:
+	* flask --app flask_backend.py run --host=100.117.48.119
+
+How to start server open to internet:
+	* flask --app flask_backend.py run --host=0.0.0.0
