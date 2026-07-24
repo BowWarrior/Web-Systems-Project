@@ -227,41 +227,41 @@ tileScroll();
 
 function setBackground(){
     if(displayedMonth.innerHTML.includes("Jan")){
-        document.body.style.backgroundImage = "url('images/january2.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/january2.jpg')";
         
     } else if(displayedMonth.innerHTML.includes("Feb")){
-        document.body.style.backgroundImage = "url('images/february2.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/february2.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Mar")){
-        document.body.style.backgroundImage = "url('images/march.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/march.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Apr")){
-        document.body.style.backgroundImage = "url('images/april.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/april.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("May")){
-        document.body.style.backgroundImage = "url('images/may.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/may.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Jun")){
-        document.body.style.backgroundImage = "url('images/june.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/june.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Jul")){
-        document.body.style.backgroundImage = "url('images/july.webp')";
+        document.body.style.backgroundImage = "url('/static/images/july.webp')";
         //document.body.insertAdjacentHTML('afterbegin', "<div style='position:fixed;inset:0;background:url(images/july.webp) center/cover no-repeat;transform:scaleX(-1);z-index:-1;'></div>");
 
     } else if(displayedMonth.innerHTML.includes("Aug")){
-        document.body.style.backgroundImage = "url('images/august.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/august.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Sep")){
-        document.body.style.backgroundImage = "url('images/september2.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/september2.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Oct")){
-        document.body.style.backgroundImage = "url('images/october4.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/october4.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Nov")){
-        document.body.style.backgroundImage = "url('images/november2.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/november2.jpg')";
 
     } else if(displayedMonth.innerHTML.includes("Dec")){
-        document.body.style.backgroundImage = "url('images/december3.jpg')";
+        document.body.style.backgroundImage = "url('/static/images/december3.jpg')";
         //document.getElementsByClassName("weekdayRowDiv")[0].style.color = "#dafacf";
 
     }
@@ -289,7 +289,7 @@ function addEvent() {
 
     const newItem = document.createElement("div");
     newItem.classList.add("item");
-    newItem.innerText = taskData.title;    
+    newItem.innerText = taskData.title;
 
     tileItems.appendChild(newItem);
 }

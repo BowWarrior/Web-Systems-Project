@@ -147,6 +147,7 @@ body {
     color:white;
     padding:0px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
 #sidePanel.active {
@@ -167,6 +168,7 @@ body {
     text-align: center;
     justify-content: center;
     display:none;
+    z-index: 2;
 }
 
 #addEventTitle{
@@ -229,7 +231,7 @@ input[type="text"]:focus {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  gap:2px;
   justify-content: center;
   align-items: center;
 }
@@ -238,12 +240,13 @@ input[type="text"]:focus {
   background: #2196f3;
   color: white;
   border: none;
-  padding: 10px 18px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
   transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
-  min-width: 100px;
+  padding:8px;
+  min-width: 60%;
+  white-space: nowrap;
 }
 
 #saveEvent:hover, #saveAlarm:hover {
@@ -548,11 +551,10 @@ input[type="text"]:focus {
         left: 0;
         width: 100%;
         margin: 0px;
-        opacity: 0.9;
+        opacity: 0;
         background-color: white;
         height: 35vh;
         transition: height 0.35s ease;
-        z-index: 999;    /*makes sure it overlaps calendar*/
     }
 
     #sidePanel.expanded {
@@ -561,6 +563,9 @@ input[type="text"]:focus {
     #sidePanel.contracted {
         height: 35vh;
     }
+
+    
+
 
     .item {
         font-size: 8px;
